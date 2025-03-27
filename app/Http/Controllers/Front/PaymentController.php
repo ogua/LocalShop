@@ -3,17 +3,17 @@
 
 // Using Omnipay PayPal package    "composer require league/omnipay omnipay/paypal"    :https://github.com/thephpleague/omnipay-paypal.    // https://github.com/thephpleague/omnipay    
 namespace App\Http\Controllers\Front;
+use Paystack;
 use Omnipay\Omnipay;
 use App\Models\Order;
 use App\NotificationService;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Models\ProductsAttribute;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Unicodeveloper\Paystack\Facades\Paystack;
 
 
 class PaymentController extends Controller
@@ -24,6 +24,8 @@ class PaymentController extends Controller
         if (request()->has(['trxref', 'reference'])) {
 
             $paymentDetails = Paystack::getPaymentData();
+
+            //dd($paymentDetails);
 
             $paymentdata = $paymentDetails['data'];
 
@@ -56,7 +58,7 @@ class PaymentController extends Controller
              $email = Auth::user()->email; // Retrieving The Authenticated User: https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
 
             // Sending the SMS to the user
-            NotificationService::send('Dear ' . Auth::user()->name . ', your order has been successfully placed. Your order ID is ' . $order_id . '. Thank you for shopping with us.', Auth::user()->phone);
+            NotificationService::send('Dear ' . Auth::user()->name . ', your order has been successfully placed. Your order ID is ' . $order_id . '. Thank you for shopping with us.', Auth::user()->mobile);
 
             // Inventory Management - Reduce inventory/stock when an order gets placed
                 // We wrote the Inventory/Stock Management script in TWO places: in the checkout() method in Front/ProductsController.php and in the success() method in Front/PaypalController.php

@@ -307,7 +307,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function() {
         // PayPal successful payment
         Route::get('success', 'PaypalController@success');
 
-        Route::get('payment-success', 'PaymentController@paymentsuccess');
+        Route::get('payment-success', 'PaymentController@paymentsuccess')
+        ->name('payment.success');
 
         // PayPal failed payment
         Route::get('error', 'PaypalController@error');

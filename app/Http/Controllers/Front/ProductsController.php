@@ -1148,11 +1148,13 @@ class ProductsController extends Controller
                 
                 // Sending the Order confirmation SMS
                 // Send an SMS using an SMS API and cURL    
-                $message = 'Dear Customer, your order ' . $order_id . ' has been placed successfully with MultiVendorEcommerceApplication.com.eg. We will inform you once your order is shipped';
+                $message = 'Dear Customer, your order ' . $order_id . ' has been placed successfully. We will inform you once your order is shipped';
                 // $mobile = $data['mobile']; // the user's mobile that they entered while submitting the registration form
-                $mobile = Auth::user()->moblie; // Retrieving The Authenticated User: https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
+                $mobile = Auth::user()->mobile; // Retrieving The Authenticated User: https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
                 //\App\Models\Sms::sendSms($message, $mobile); // Send the SMS
                 NotificationService::send($message, $mobile); // Send the SMS using the NotificationService.php class
+
+               // dd(Auth::user()->mobile);
             
                 // PayPal payment gateway integration in Laravel
             } elseif ($data['payment_gateway'] == 'Paypal') {
@@ -1174,20 +1176,18 @@ class ProductsController extends Controller
                 $amount = $grand_total;
 
                 $response = (object) $Transaction
-                ->setCallbackUrl(route('general-payment-successful',['paytype' => 'AdmissionFeePayment']))
+                ->setCallbackUrl(route('payment.success'))
                 ->setEmail(Auth::user()->email)
                 ->setAmount($amount)
                 ->setMetadata(
                     [
                         'fullname' => Auth::user()->name,
-                        'phone' => Auth::user()->moblie,
+                        'phone' => Auth::user()->mobile,
                         'email' => Auth::user()->email,
                         'order_id' => $order_id,
                         'fee_charged' => 10,
                     ])
                 ->initialize();
-
-                dd($response->authorizationUrl);
 
                 if ($response && isset($response->authorizationUrl)) {
 

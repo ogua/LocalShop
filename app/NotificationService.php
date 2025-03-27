@@ -30,7 +30,6 @@ class NotificationService
         $result = curl_exec($ch);
         $data = json_decode($result, true);
 
-        Logger($data);
         curl_close($ch);
     }
 }
