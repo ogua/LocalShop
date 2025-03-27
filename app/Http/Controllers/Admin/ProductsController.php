@@ -2,55 +2,52 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
-
 use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Models\ProductsImage;
 use App\Models\ProductsFilter;
 use App\Models\ProductsAttribute;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
+
 
 class ProductsController extends Controller
 {
-    public function products() { // render products.blade.php in the Admin Panel
+    public function products() {
         Session::put('page', 'products');
-
-
-        // Modify the last $products variable so that ONLY products that BELONG TO the 'vendor' show up in (not ALL products show up) in products.blade.php, and also make sure that the 'vendor' account is active/enabled/approved (`status` is 1) before they can access the products page    
-        $adminType = Auth::guard('admin')->user()->type;      // `type`      is the column in `admins` table    // Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances    // Retrieving The Authenticated User and getting their `type`      column in `admins` table    // https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
-        $vendor_id = Auth::guard('admin')->user()->vendor_id; // `vendor_id` is the column in `admins` table    // Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances    // Retrieving The Authenticated User and getting their `vendor_id` column in `admins` table    // https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
-        
-        if ($adminType == 'vendor') { // if the authenticated user (the logged in user) is 'vendor', check his `status`
-            $vendorStatus = Auth::guard('admin')->user()->status; // `status` is the column in `admins` table    // Accessing Specific Guard Instances: https://laravel.com/docs/9.x/authentication#accessing-specific-guard-instances    // Retrieving The Authenticated User and getting their `status` column in `admins` table    // https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
-            if ($vendorStatus == 0) { // if the 'vendor' is inactive/disabled
-                return redirect('admin/update-vendor-details/personal')->with('error_message', 'Your Vendor Account is not approved yet. Please make sure to fill your valid personal, business and bank details.'); // the error_message will appear to the vendor in the route: 'admin/update-vendor-details/personal' which is the update_vendor_details.blade.php page
-            }
+    
+        // Get authenticated admin details
+        $admin = Auth::guard('admin')->user();
+        $adminType = $admin->type;
+        $vendor_id = $admin->vendor_id;
+    
+        // If the user is a vendor, check if they are active
+        if ($adminType == 'vendor' && $admin->status == 0) {
+            return redirect('admin/update-vendor-details/personal')
+                ->with('error_message', 'Your Vendor Account is not approved yet. Please make sure to fill your valid personal, business and bank details.');
         }
-
-        // Get ALL products ($products)
-        $products = Product::with([ // Constraining Eager Loads: https://laravel.com/docs/9.x/eloquent-relationships#constraining-eager-loads    // Subquery Where Clauses: https://laravel.com/docs/9.x/queries#subquery-where-clauses    // Advanced Subqueries: https://laravel.com/docs/9.x/eloquent#advanced-subqueries
-            'section' => function($query) { // the 'section' relationship method in Product.php Model
-                $query->select('id', 'name'); // Important Note: It's a MUST to select 'id' even if you don't need it, because the relationship Foreign Key `product_id` depends on it, or else the `product` relationship would give you 'null'!
+    
+        // Query products
+        $query = Product::with([
+            'section' => function($query) {
+                $query->select('id', 'name');
             },
-            'category' => function($query) { // the 'category' relationship method in Product.php Model
-                $query->select('id', 'category_name'); // Important Note: It's a MUST to select 'id' even if you don't need it, because the relationship Foreign Key `product_id` depends on it, or else the `product` relationship would give you 'null'!
+            'category' => function($query) {
+                $query->select('id', 'category_name');
             }
-        ]);
-
-        // if the authenticated user (the logged in user) is 'vendor', show ONLY the products that BELONG TO them (in products.blade.php) ($products)
+        ])->latest(); // This ensures products are sorted in descending order
+    
+        // If vendor, only get their products
         if ($adminType == 'vendor') {
-            $produtcs = $products->where('vendor_id', $vendor_id);
+            $query->where('vendor_id', $vendor_id);
         }
-
-        $products = $products->get()->toArray(); // $products will be either ALL products Or VENDOR products ONLY (depending on the last if condition)    // Using subqueries with Eager Loading for a better performance    // Constraining Eager Loads: https://laravel.com/docs/9.x/eloquent-relationships#constraining-eager-loads    // Subquery Where Clauses: https://laravel.com/docs/9.x/queries#subquery-where-clauses    // Advanced Subqueries: https://laravel.com/docs/9.x/eloquent#advanced-subqueries    // ['section', 'category'] are the relationships methods names
-        // dd($products);
-
-
-        return view('admin.products.products')->with(compact('products')); // render products.blade.php page, and pass $products variable to the view
+    
+        $products = $query->get()->toArray();
+    
+        return view('admin.products.products')->with(compact('products'));
     }
     
     public function updateProductStatus(Request $request) { // Update Product Status using AJAX in products.blade.php

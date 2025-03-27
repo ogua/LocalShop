@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-// Auth without a namespace here works fine because the Admin.php model extends Authenticatable
-use Illuminate\Support\FacadesAuth;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Intervention\Image\Facades\Image;
-use Symfony\Component\VarDumper\VarDumper;
-
+use App\Models\User;
 use App\Models\Admin;
-use App\Models\Section;
-use App\Models\Category;
-use App\Models\Product;
+// Auth without a namespace here works fine because the Admin.php model extends Authenticatable
+use App\Models\Brand;
 use App\Models\Order;
 use App\Models\Coupon;
-use App\Models\Brand;
-use App\Models\User;
 use App\Models\Vendor;
-use App\Models\VendorsBusinessDetail;
-use App\Models\VendorsBankDetail;
 use App\Models\Country;
+
+use App\Models\Product;
+use App\Models\Section;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Models\VendorsBankDetail;
+use Illuminate\Support\FacadesAuth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\VendorsBusinessDetail;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
+use Symfony\Component\VarDumper\VarDumper;
 
 class AdminController extends Controller
 {

@@ -63,7 +63,7 @@
                             <div class="justify-content-end d-flex">
                                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                                     <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                                    <i class="mdi mdi-calendar"></i> Today ({{ date('Y-m-d') }})
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
                                         <a class="dropdown-item" href="#">January - March</a>
@@ -96,11 +96,11 @@
                             </div>
                             <div class="form-group" style="height: 15px">
                                 <label style="font-weight: 550">Order Total: </label>
-                                <label>EGP{{ $orderDetails['grand_total'] }}</label>
+                                <label>GHC{{ $orderDetails['grand_total'] }}</label>
                             </div>
                             <div class="form-group" style="height: 15px">
                                 <label style="font-weight: 550">Shipping Charges: </label>
-                                <label>EGP{{ $orderDetails['shipping_charges'] }}</label>
+                                <label>GHC{{ $orderDetails['shipping_charges'] }}</label>
                             </div>
 
                             @if (!empty($orderDetails['coupon_code']))
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="form-group" style="height: 15px">
                                     <label style="font-weight: 550">Coupon Amount: </label>
-                                    <label>EGP{{ $orderDetails['coupon_amount'] }}</label>
+                                    <label>GHC{{ $orderDetails['coupon_amount'] }}</label>
                                 </div>                                
                             @endif
 

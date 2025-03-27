@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-
-use App\Models\User;
 use App\Models\Cart;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 
 
@@ -69,9 +69,10 @@ class UserController extends Controller
                     'email'  => $data['email'],  // the user's email that they entered while submitting the registration form
                     'code'   => base64_encode($data['email']) // We base64 code the user's $email and send it as a Route Parameter from resources/views/emails/confirmation.blade.php to the 'user/confirm/{code}' route in web.php, then it gets base64 de-coded again in confirmUser() method in Front/UserController.php    // We will use the opposite: base64_decode() in the confirmUser() method to decode the encoded string (encode X decode)
                 ];
-                \Illuminate\Support\Facades\Mail::send('emails.confirmation', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.confirmation' is the resources/views/emails/confirmation.blade.php file that will be sent as an email    // We pass in all the variables that confirmation.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
-                    $message->to($email)->subject('Confirm your Multi-vendor E-commerce Application Account');
-                });
+                
+                // \Illuminate\Support\Facades\Mail::send('emails.confirmation', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.confirmation' is the resources/views/emails/confirmation.blade.php file that will be sent as an email    // We pass in all the variables that confirmation.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
+                //     $message->to($email)->subject('Confirm your Multi-vendor E-commerce Application Account');
+                // });
 
                 // Redirect user back with a success message
                 $redirectTo = url('user/login-register'); // redirect user to the front/users/login_register.blade.php    // Check that route in web.php
@@ -80,7 +81,7 @@ class UserController extends Controller
                 return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
                     'type'    => 'success',
                     'url'     => $redirectTo, // redirect user to the Cart cart.blade.php page
-                    'message' => 'Please confirm your email to activate your account!'
+                    'message' => 'Account created successfully!'
                 ]);
 
 
@@ -128,18 +129,7 @@ class UserController extends Controller
                     'password' => $data['password'] // $data['password'] comes from the 'data' object sent from inside the $.ajax() method in front/js/custom.js file
                 ])) {
                     // First, check if the user being authenticated/logged in is inactive/disabled/deactivated by an admin (`status` is zero 0 in `users` table), logout the user, then return them back with a message
-                    if (Auth::user()->status == 0) {
-                        Auth::logout(); // logout the user
-
-                        // Here, we return a JSON response because the request is ORIGINALLY submitting an HTML <form> data using an AJAX request
-                        return response()->json([ // JSON Responses: https://laravel.com/docs/9.x/responses#json-responses
-                            'type'    => 'inactive',
-                            // 'message' => 'Your account is inactive. Please contact Admin'
-                            'message' => 'Your account is not activated! Please confirm your account (by clicking on the Activation Link in the Confirmation Mail) to activate your account.'
-                        ]);
-                    }
-
-
+    
                     // Update the user's Cart (the `user_id` column in `carts` table) with their `user_id` (because before login, user's orders in the Cart were stored only using the session (and `user_id` is zero 0) (check the cartAdd() method in Front/ProductsController.php))
                     if (!empty(Session::get('session_id'))) {
                         $user_id    = Auth::user()->id;

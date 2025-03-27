@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-
-use App\Models\Category;
-use App\Models\DeliveryAddress;
-use App\Models\Product;
-use App\Models\ProductsAttribute;
-use App\Models\Rating;
 use App\Models\Cart;
-use App\Models\Coupon;
-use App\Models\Order;
-use App\Models\ProductsFilter;
-use App\Models\Vendor;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Coupon;
+use App\Models\Rating;
+
+use App\Models\Vendor;
 use App\Models\Country;
-use App\Models\ShippingCharge;
+use App\Models\Product;
+use App\Models\Category;
+use App\NotificationService;
+use Illuminate\Http\Request;
 use App\Models\OrdersProduct;
+use App\Models\ProductsFilter;
+use App\Models\ShippingCharge;
+use App\Models\DeliveryAddress;
+use App\Models\ProductsAttribute;
+use Illuminate\Support\Facades\DB;
+use Matscode\Paystack\Transaction;
+use Matscode\Paystack\Utility\Http;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Matscode\Paystack\Utility\Debug; // for Debugging purpose
+use Illuminate\Support\Facades\Session;
 
 class ProductsController extends Controller
 {
@@ -1137,20 +1141,19 @@ class ProductsController extends Controller
                     'orderDetails' => $orderDetails
                 ];
 
-                \Illuminate\Support\Facades\Mail::send('emails.order', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.order' is the order.blade.php file inside the 'resources/views/emails' folder that will be sent as an email    // We pass in all the variables that order.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
-                    $message->to($email)->subject('Order Placed - MultiVendorEcommerceApplication.com.eg');
-                });
+                // \Illuminate\Support\Facades\Mail::send('emails.order', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.order' is the order.blade.php file inside the 'resources/views/emails' folder that will be sent as an email    // We pass in all the variables that order.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
+                //     $message->to($email)->subject('Order Placed - MultiVendorEcommerceApplication.com.eg');
+                // });
 
-                /*
+                
                 // Sending the Order confirmation SMS
                 // Send an SMS using an SMS API and cURL    
                 $message = 'Dear Customer, your order ' . $order_id . ' has been placed successfully with MultiVendorEcommerceApplication.com.eg. We will inform you once your order is shipped';
                 // $mobile = $data['mobile']; // the user's mobile that they entered while submitting the registration form
                 $mobile = Auth::user()->moblie; // Retrieving The Authenticated User: https://laravel.com/docs/9.x/authentication#retrieving-the-authenticated-user
-                \App\Models\Sms::sendSms($message, $mobile); // Send the SMS
-                */
-
-
+                //\App\Models\Sms::sendSms($message, $mobile); // Send the SMS
+                NotificationService::send($message, $mobile); // Send the SMS using the NotificationService.php class
+            
                 // PayPal payment gateway integration in Laravel
             } elseif ($data['payment_gateway'] == 'Paypal') {
                 // redirect the user to the PayPalController.php (after saving the order details in `orders` and `orders_products` tables)
@@ -1159,6 +1162,41 @@ class ProductsController extends Controller
                 // iyzico Payment Gateway integration in/with Laravel    
             } elseif ($data['payment_gateway'] == 'iyzipay') {
                 // redirect the user to the IyzipayController.php (after saving the order details in `orders` and `orders_products` tables)
+                return redirect('/iyzipay');
+
+            }elseif ($data['payment_gateway'] == 'creditcard_momo') {
+
+                //initial the payment process
+                $secretKey = "sk_test_509a7524f08f249f64f446d75d3469e9dd621f26";
+                // creating the transaction object
+                $Transaction = new Transaction($secretKey);
+
+                $amount = $grand_total;
+
+                $response = (object) $Transaction
+                ->setCallbackUrl(route('general-payment-successful',['paytype' => 'AdmissionFeePayment']))
+                ->setEmail(Auth::user()->email)
+                ->setAmount($amount)
+                ->setMetadata(
+                    [
+                        'fullname' => Auth::user()->name,
+                        'phone' => Auth::user()->moblie,
+                        'email' => Auth::user()->email,
+                        'order_id' => $order_id,
+                        'fee_charged' => 10,
+                    ])
+                ->initialize();
+
+                dd($response->authorizationUrl);
+
+                if ($response && isset($response->authorizationUrl)) {
+
+                    return redirect()->to($response->authorizationUrl);
+
+                } else {
+                    return redirect()->back()->with('error', 'An error occurred while processing your payment. Please try again later.');
+                }
+                
                 return redirect('/iyzipay');
 
             } else { // if the `payment_gateway` selected by the user is not 'COD', meaning it's like PayPal, Prepaid, ... (in front/products/checkout.blade.php), we send the placing the order confirmation email and SMS after the user makes the payment

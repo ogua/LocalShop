@@ -34,7 +34,7 @@
             <li class="nav-item">
                 <a @if (Session::get('page') == 'sections' || Session::get('page') == 'categories' || Session::get('page') == 'products' || Session::get('page') == 'brands' || Session::get('page') == 'filters' || Session::get('page') == 'coupons') style="background: #052CA3 !important; color: #FFF !important" @endif class="nav-link" data-toggle="collapse" href="#ui-catalogue" aria-expanded="false" aria-controls="ui-catalogue">
                     <i class="icon-layout menu-icon"></i>
-                    <span class="menu-title">Catalogue Management</span>
+                    <span class="menu-title">Product Management</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="ui-catalogue">
@@ -97,7 +97,7 @@
             <li class="nav-item">
                 <a @if (Session::get('page') == 'sections' || Session::get('page') == 'categories' || Session::get('page') == 'products' || Session::get('page') == 'brands' || Session::get('page') == 'filters' || Session::get('page') == 'coupons') style="background: #052CA3 !important; color: #FFF !important" @endif class="nav-link" data-toggle="collapse" href="#ui-catalogue" aria-expanded="false" aria-controls="ui-catalogue">
                     <i class="icon-layout menu-icon"></i>
-                    <span class="menu-title">Catalogue Management</span>
+                    <span class="menu-title">Product Management</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="ui-catalogue">
@@ -135,7 +135,7 @@
                 </a>
                 <div class="collapse" id="ui-ratings">
                     <ul class="nav flex-column sub-menu" style="background: #fff !important; color: #052CA3 !important">
-                        <li class="nav-item"> <a @if (Session::get('page') == 'ratings')   style="background: #052CA3 !important; color: #FFF !important" @else style="background: #fff !important; color: #052CA3 !important" @endif class="nav-link" href="{{ url('admin/ratings') }}">Product Ratings & Reviews</a></li>
+                        <li class="nav-item"> <a @if (Session::get('page') == 'ratings')   style="background: #052CA3 !important; color: #FFF !important" @else style="background: #fff !important; color: #052CA3 !important" @endif class="nav-link" href="{{ url('admin/ratings') }}">Ratings & Reviews</a></li>
                     </ul>
                 </div>
             </li>

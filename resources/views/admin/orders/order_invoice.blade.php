@@ -116,9 +116,9 @@
                                         </td>
                                         <td class="text-center">{{ $product['product_size'] }}</td>
                                         <td class="text-center">{{ $product['product_color'] }}</td>
-                                        <td class="text-center">INR {{ $product['product_price'] }}</td>
+                                        <td class="text-center">GHC {{ $product['product_price'] }}</td>
                                         <td class="text-center">{{ $product['product_qty'] }}</td>
-                                        <td class="text-right">INR {{ $product['product_price'] * $product['product_qty'] }}</td>
+                                        <td class="text-right">GHC {{ $product['product_price'] * $product['product_qty'] }}</td>
                                     </tr>
 
                                     {{-- Continue: Calculate the Subtotal --}}
@@ -133,7 +133,7 @@
                                     <td class="thick-line"></td>
                                     <td class="thick-line"></td>
                                     <td class="thick-line text-right"><strong>Subtotal</strong></td>
-                                    <td class="thick-line text-right">INR {{ $subTotal }}</td>
+                                    <td class="thick-line text-right">GHC {{ $subTotal }}</td>
                                 </tr>
                                 <tr>
                                     <td class="no-line"></td>
@@ -141,7 +141,7 @@
                                     <td class="no-line"></td>
                                     <td class="no-line"></td>
                                     <td class="no-line text-right"><strong>Shipping Charges</strong></td>
-                                    <td class="no-line text-right">INR 0</td>
+                                    <td class="no-line text-right">GHC 0</td>
                                 </tr>
                                 <tr>
                                     <td class="no-line"></td>
@@ -150,7 +150,7 @@
                                     <td class="no-line"></td>
                                     <td class="no-line text-right"><strong>Grand Total</strong></td>
                                     <td class="no-line text-right">
-                                        <strong>INR {{ $orderDetails['grand_total'] }}</strong>
+                                        <strong>GHC {{ $orderDetails['grand_total'] }}</strong>
                                         <br>
 
                                         @if ($orderDetails['payment_method'] == 'COD')

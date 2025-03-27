@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
-use App\Models\Vendor;
-use App\Models\Admin;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class VendorController extends Controller
 {
@@ -58,7 +58,8 @@ class VendorController extends Controller
             $vendor->name   = $data['name'];
             $vendor->mobile = $data['mobile'];
             $vendor->email  = $data['email'];
-            $vendor->status = 0; // Note: After a new vendor registers a new account, they will remain inactive/disabled (`status` is 0), untill the confirmation email arrives for them and they click the link, and they complete filling their vendor details, then the admin APPROVES them (then status becomes 1)
+            $vendor->confirm  = "Yes";
+            $vendor->status = 1; // Note: After a new vendor registers a new account, they will remain inactive/disabled (`status` is 0), untill the confirmation email arrives for them and they click the link, and they complete filling their vendor details, then the admin APPROVES them (then status becomes 1)
 
             // Set Laravel's default timezone to Egypt's (to enter correct `created_at` and `updated_at` records in the database tables) instead of UTC
             date_default_timezone_set('Africa/Cairo'); // https://www.php.net/manual/en/timezones.php and https://www.php.net/manual/en/timezones.africa.php
@@ -79,8 +80,8 @@ class VendorController extends Controller
             $admin->mobile    = $data['mobile'];
             $admin->email     = $data['email'];
             $admin->password  = bcrypt($data['password']); // hashing the password to store the hashed password in the table (NOT THE PASSWORD ITSELF!!)
-            $admin->status    = 0; // Note: After a new vendor registers a new account, they will remain inactive/disabled (`status` is 0), untill the confirmation email arrives for them and they click the link, and they complete filling their vendor details, then the admin APPROVES them (then status becomes 1)
-
+            $admin->status    = 1; // Note: After a new vendor registers a new account, they will remain inactive/disabled (`status` is 0), untill the confirmation email arrives for them and they click the link, and they complete filling their vendor details, then the admin APPROVES them (then status becomes 1)
+            $admin->confirm  = "Yes";
             // Set Laravel's default timezone to Egypt's (to enter correct `created_at` and `updated_at` records in the database tables) instead of UTC
             date_default_timezone_set('Africa/Cairo'); // https://www.php.net/manual/en/timezones.php and https://www.php.net/manual/en/timezones.africa.php
             $admin->created_at = date('Y-m-d H:i:s'); // enter `created_at` MANUALLY!    // Formatting the date for MySQL: https://www.php.net/manual/en/function.date.php
@@ -99,16 +100,16 @@ class VendorController extends Controller
                 'code'  => base64_encode($data['email']) // We base64 code the vendor $email and send it as a Route Parameter from vendor_confirmation.blade.php to the 'vendor/confirm/{code}' route in web.php, then it gets base64 decoded again in confirmVendor() method in Front/VendorController.php    // we will use the opposite: base64_decode() in the confirmVendor() method (encode X decode)
             ];
 
-            \Illuminate\Support\Facades\Mail::send('emails.vendor_confirmation', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.vendor_confirmation' is the vendor_confirmation.blade.php file inside the 'resources/views/emails' folder that will be sent as an email    // We pass in all the variables that vendor_confirmation.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
-                $message->to($email)->subject('Confirm your Vendor Account');
-            });
+            // \Illuminate\Support\Facades\Mail::send('emails.vendor_confirmation', $messageData, function ($message) use ($email) { // Sending Mail: https://laravel.com/docs/9.x/mail#sending-mail    // 'emails.vendor_confirmation' is the vendor_confirmation.blade.php file inside the 'resources/views/emails' folder that will be sent as an email    // We pass in all the variables that vendor_confirmation.blade.php will use    // https://www.php.net/manual/en/functions.anonymous.php
+            //     $message->to($email)->subject('Confirm your Vendor Account');
+            // });
 
 
             DB::commit(); // commit the Database Transaction
 
 
             // Redirect the vendor back with a success message
-            $message = 'Thanks for registering as Vendor. Please confirm your email to activate your account.';
+            $message = 'Thanks for registering as Vendor.';
             return redirect()->back()->with('success_message', $message);
         }
     }

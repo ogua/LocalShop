@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth;
-
 use App\Models\User;
 use App\Models\Order;
-use App\Models\OrdersProduct;
 use App\Models\OrdersLog;
 use App\Models\OrderStatus;
+
+use Illuminate\Http\Request;
+use App\Models\OrdersProduct;
 use App\Models\OrderItemStatus;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class OrderController extends Controller
@@ -616,10 +616,10 @@ class OrderController extends Controller
                 <header class="clearfix">
                     <div class="container">
                         <div class="company-address">
-                            <h2 class="title">Multi-vendor E-commerce Application</h2>
+                            <h2 class="title">Local Shop: Project Work</h2>
                             <p>
                                 37 Salah Salem St.<br>
-                                Cairo, Egypt
+                                Ghana
                             </p>
                         </div>
                         <div class="company-contact">
@@ -651,7 +651,7 @@ class OrderController extends Controller
                                 <div class="title">Order ID: ' . $orderDetails['id'] . '</div>
                                 <div class="date">
                                     Order Date: ' . date('Y-m-d h:i:s', strtotime($orderDetails['created_at'])) . '<br>
-                                    Order Amount: INR ' . $orderDetails['grand_total'] . '<br>
+                                    Order Amount: GHC ' . $orderDetails['grand_total'] . '<br>
                                     Order Status: ' . $orderDetails['order_status'] . '<br>
                                     Payment Method: ' . $orderDetails['payment_method'] . '<br>
                                 </div>
@@ -681,8 +681,8 @@ class OrderController extends Controller
                                         <td class="qty">' . $product['product_size'] . '</td>
                                         <td class="qty">' . $product['product_color'] . '</td>
                                         <td class="qty">' . $product['product_qty'] . '</td>
-                                        <td class="unit">INR ' . $product['product_price'] . '</td>
-                                        <td class="total">INR ' . $product['product_price'] * $product['product_qty'] . '</td>
+                                        <td class="unit">GHC ' . $product['product_price'] . '</td>
+                                        <td class="total">GHC ' . $product['product_price'] * $product['product_qty'] . '</td>
                                     </tr>';
 
                                 // Continue: Calculate the Subtotal
@@ -701,14 +701,14 @@ class OrderController extends Controller
                                         <td class="desc"></td>
                                         <td class="desc"></td>
                                         <td class="total" colspan=2>SUBTOTAL</td>
-                                        <td class="total">INR ' . $subTotal . '</td>
+                                        <td class="total">GHC ' . $subTotal . '</td>
                                     </tr>
                                     <tr>
                                         <td class="desc"></td>
                                         <td class="desc"></td>
                                         <td class="desc"></td>
                                         <td class="total" colspan=2>SHIPPING</td>
-                                        <td class="total">INR 0</td>
+                                        <td class="total">GHC 0</td>
                                     </tr>
                                     <tr>
                                         <td class="desc"></td>
@@ -718,10 +718,10 @@ class OrderController extends Controller
 
                                         if ($orderDetails['coupon_amount'] > 0) {
                                             // We CONCATENATE $invoiceHTML
-                                            $invoiceHTML .= '<td class="total">INR '. $orderDetails['coupon_amount'] . '</td>';
+                                            $invoiceHTML .= '<td class="total">GHC '. $orderDetails['coupon_amount'] . '</td>';
                                         } else {
                                             // We CONCATENATE $invoiceHTML
-                                            $invoiceHTML .= '<td class="total">INR 0</td>';
+                                            $invoiceHTML .= '<td class="total">GHC 0</td>';
                                         }
 
                                         // We CONCATENATE $invoiceHTML
@@ -732,7 +732,7 @@ class OrderController extends Controller
                                         <td class="desc"></td>
                                         <td class="desc"></td>
                                         <td class="total" colspan="2">TOTAL</td>
-                                        <td class="total">INR ' . $orderDetails['grand_total'] . '</td>
+                                        <td class="total">GHC ' . $orderDetails['grand_total'] . '</td>
                                     </tr>
                                 </tbody>
                             </table>
