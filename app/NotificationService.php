@@ -10,6 +10,8 @@ class NotificationService
     {
         $apikey = "qSjSdqpn1IUdLDkhWhQ6gvLkfY2TwpjWiCPv2eS3XNhIq";
         $senderid = "NOTIFY";
+
+        return;
         
         $endPoint = 'https://api.mnotify.com/api/sms/quick';
         $url = $endPoint . '?key=' . $apikey;
