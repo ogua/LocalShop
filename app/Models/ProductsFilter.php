@@ -14,17 +14,17 @@ class ProductsFilter extends Model
 
 
 
-    // this method is called in admin\filters\filters_values.blade.php to be able to translate the `filter_id` column to filter names to show them in the table in filters_values.blade.php in the Admin Panel    
+    // this method is called in admin\filters\filters_values.blade.php to be able to translate the `filter_id` column to filter names to show them in the table in filters_values.blade.php in the Admin Panel
     public static function getFilterName($filter_id) {
         $getFilterName = ProductsFilter::select('filter_name')->where('id', $filter_id)->first();
 
 
-        return $getFilterName->filter_name;
+        return $getFilterName?->filter_name;
     }
 
 
 
-    // Every Product Dynamic Filter has many Product Filter Values (hasMany) (A 'RAM' product dynamic filter has many values like: 4GB, 6GB, 8GB, ...)    
+    // Every Product Dynamic Filter has many Product Filter Values (hasMany) (A 'RAM' product dynamic filter has many values like: 4GB, 6GB, 8GB, ...)
     public function filter_values() {
         return $this->hasMany('App\Models\ProductsFiltersValue', 'filter_id'); // 'filter_id' is the foreign key
     }
@@ -32,7 +32,7 @@ class ProductsFilter extends Model
 
 
     // Get all the (enabled/active) Filters
-    public static function productFilters() { 
+    public static function productFilters() {
         $productFilters = ProductsFilter::with('filter_values')->where('status', 1)->get()->toArray(); // with('filter_values') is the relationship method name to get the values of a filter
 
         return $productFilters;
@@ -40,7 +40,7 @@ class ProductsFilter extends Model
 
 
 
-    // Check if a specific filter has a said category    // Get the category related filters (to be able to get a some category filters to view them in filters.blade.php)    
+    // Check if a specific filter has a said category    // Get the category related filters (to be able to get a some category filters to view them in filters.blade.php)
     public static function filterAvailable($filter_id, $category_id) {
         $filterAvailable = ProductsFilter::select('cat_ids')->where([
             'id'     => $filter_id,
@@ -62,7 +62,7 @@ class ProductsFilter extends Model
 
 
 
-    // Get the sizes of a product from a URL (URL of the category)    
+    // Get the sizes of a product from a URL (URL of the category)
     public static function getSizes($url) { // this method is used in filters.blade.php
         // Get the parent category & its subcategories (child categories) ids of a certain URL
         $categoryDetails = Category::categoryDetails($url);
@@ -77,7 +77,7 @@ class ProductsFilter extends Model
         return $getProductSizes;
     }
 
-    // Get the colors of a product from a URL (URL of the category)    
+    // Get the colors of a product from a URL (URL of the category)
     public static function getColors($url) { // this method is used in filters.blade.php
         // Get the parent category & its subcategories (child categories) ids of a certain URL
         $categoryDetails = Category::categoryDetails($url);
@@ -94,7 +94,7 @@ class ProductsFilter extends Model
         return $getProductColors;
     }
 
-    // Get the brand of a product from a URL (URL of the category)    
+    // Get the brand of a product from a URL (URL of the category)
     public static function getBrands($url) { // this method is used in filters.blade.php
         // Get the parent category & its subcategories (child categories) ids of a certain URL
         $categoryDetails = Category::categoryDetails($url);
@@ -108,7 +108,7 @@ class ProductsFilter extends Model
 
 
         // Get the brand names from `brands` table
-        $brandDetails = \App\Models\Brand::select('id', 'name')->whereIn('id', $brandIds)->get()->toArray(); // from `brands` table 
+        $brandDetails = \App\Models\Brand::select('id', 'name')->whereIn('id', $brandIds)->get()->toArray(); // from `brands` table
 
 
         return $brandDetails;

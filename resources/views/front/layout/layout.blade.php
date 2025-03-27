@@ -31,9 +31,9 @@
 
             {{-- Static And Dynamic SEO (HTML meta tags): Check the HTML <meta> tags and <title> tag in front/layout/layout.blade.php. Check index() method in Front/IndexController.php, listing() method in Front/ProductsController.php, detail() method in Front/ProductsController.php and cart() method in Front/ProductsController.php     --}}
             @if (!empty($meta_title))
-                {{ $meta_title }}
+                Local Shop
             @else
-                Local Shop - E-commerce Project Work
+                Local Shop
             @endif
 
         </title>
