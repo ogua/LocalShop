@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2025 at 05:10 PM
+-- Generation Time: Mar 27, 2025 at 03:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -47,7 +47,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `type`, `vendor_id`, `mobile`, `email`, `password`, `image`, `confirm`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Ahmed Yahya', 'superadmin', 0, '01255686414', 'admin@admin.com', '$2a$12$xvkjSScUPRexfcJTAy9ATutIeGUuRgJrjDIdL/.xlrddEvRZINpeC', 'ahmed.jpg', 'No', 1, NULL, '2022-08-17 18:06:05'),
+(1, 'Ahmed Ogua', 'superadmin', 0, '0272185090', 'admin@admin.com', '$2a$12$xvkjSScUPRexfcJTAy9ATutIeGUuRgJrjDIdL/.xlrddEvRZINpeC', 'ahmed.jpg', 'No', 1, NULL, '2025-03-17 16:38:01'),
 (2, 'Yasser Fouaad - Vendor', 'vendor', 1, '01259598421', 'yasser@admin.com', '$2a$12$xvkjSScUPRexfcJTAy9ATutIeGUuRgJrjDIdL/.xlrddEvRZINpeC', '83157.jpg', 'Yes', 1, NULL, '2023-01-02 10:10:56'),
 (3, 'Samir Morsy', 'vendor', 5, '01154572136', 'samir@yahoo.com', '$2a$12$xvkjSScUPRexfcJTAy9ATutIeGUuRgJrjDIdL/.xlrddEvRZINpeC', NULL, 'No', 1, '2022-10-13 22:55:41', '2022-10-15 21:55:37'),
 (4, 'Ramy Saeed', 'vendor', 6, '01098571935', 'ramy@admin.com', '$2a$12$xvkjSScUPRexfcJTAy9ATutIeGUuRgJrjDIdL/.xlrddEvRZINpeC', '', 'Yes', 0, '2022-10-14 01:20:03', '2022-10-15 21:56:18'),
@@ -77,11 +77,13 @@ CREATE TABLE `banners` (
 --
 
 INSERT INTO `banners` (`id`, `image`, `type`, `link`, `title`, `alt`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'banner-1.jpg', 'Slider', 'spring-collection', 'Spring Collection', 'Spring Collection', 1, NULL, '2022-09-26 16:48:57'),
-(2, 'banner-2.jpg', 'Slider', 'tops', 'Tops', 'Tops', 1, NULL, '2022-09-26 16:57:36'),
+(1, 'banner-1.jpg', 'Slider', 'spring-collection', 'Spring Collection', 'Spring Collection', 0, NULL, '2025-03-19 08:22:30'),
+(2, 'banner-2.jpg', 'Slider', 'tops', 'Tops', 'Tops', 0, NULL, '2025-03-19 08:22:32'),
 (5, '22225.png', '', 'men', 'men', 'men', 0, '2022-09-25 20:17:36', '2022-09-25 20:57:19'),
-(6, '50216.jpg', 'Fix', 'men', 'men', 'men', 1, '2022-09-26 16:55:43', '2022-09-26 16:55:43'),
-(7, '6455.jpg', 'Fix', 'test', 'test', 'test', 1, '2022-09-26 16:58:08', '2022-09-26 16:58:08');
+(6, '50216.jpg', 'Fix', 'men', 'men', 'men', 0, '2022-09-26 16:55:43', '2025-03-19 08:28:42'),
+(7, '6455.jpg', 'Fix', 'test', 'test', 'test', 0, '2022-09-26 16:58:08', '2025-03-19 08:22:36'),
+(8, '4872.jpg', 'Slider', '#', 'Collection', 'Banner', 1, '2025-03-19 08:26:43', '2025-03-19 08:28:37'),
+(9, '59344.jpg', 'Fix', '#', 'Kente Shop', 'Kente Shop', 1, '2025-03-19 08:48:23', '2025-03-19 08:48:23');
 
 -- --------------------------------------------------------
 
@@ -143,7 +145,8 @@ INSERT INTO `carts` (`id`, `session_id`, `user_id`, `product_id`, `size`, `quant
 (67, 'f945daeb6a96dd25613f5da29ec2b2f1', 0, 2, 'Medium', 1, '2023-04-08 13:29:51', '2023-04-08 13:29:51'),
 (84, '353379f27d45f77a258c3ab7594f84d3', 0, 1, '64GB-4GB', 1, '2024-08-03 20:13:11', '2024-08-03 20:13:11'),
 (85, '2822300ed44786a2085699da7120e2c6', 38, 5, 'Small', 1, '2025-02-27 14:57:25', '2025-02-27 15:36:13'),
-(86, '2822300ed44786a2085699da7120e2c6', 38, 4, 'Small', 4, '2025-02-27 14:57:40', '2025-02-27 15:36:13');
+(86, '2822300ed44786a2085699da7120e2c6', 38, 4, 'Small', 4, '2025-02-27 14:57:40', '2025-02-27 15:36:13'),
+(87, 'a5ed260c265f698aa159b2c5286eb2bc', 0, 1, '8', 2, '2025-03-19 08:17:23', '2025-03-19 08:17:40');
 
 -- --------------------------------------------------------
 
@@ -176,12 +179,16 @@ INSERT INTO `categories` (`id`, `parent_id`, `section_id`, `category_name`, `cat
 (1, 0, 1, 'Men', '', 0.00, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 'men', NULL, NULL, NULL, 1, NULL, '2022-09-29 14:47:51'),
 (2, 0, 1, 'Women', '', 0.00, '', 'women', '', '', '', 1, NULL, '2022-08-20 22:38:56'),
 (3, 0, 1, 'Kids', '', 0.00, '', 'kids', '', '', '', 1, NULL, '2022-09-22 19:33:59'),
-(4, 0, 2, 'Mobiles', '', 10.00, 'test', 'mobiles', 'mobiles', 'mobiles', 'mobiles', 1, '2022-08-21 19:11:28', '2022-08-26 18:27:54'),
-(5, 4, 2, 'Smartphones', '', 10.00, 'j', 'smartphones', 'smartphones', 'smartphones', 'smartphones', 1, '2022-08-22 23:30:07', '2022-10-31 21:02:48'),
+(4, 0, 2, 'Rings', '', 10.00, 'test', 'rings', 'rings', 'rings', 'rings', 1, '2022-08-21 19:11:28', '2025-03-17 16:55:06'),
+(5, 0, 2, 'Necklaces', '', 10.00, 'j', 'necklaces', 'Necklaces', 'Necklaces', 'Necklaces', 1, '2022-08-22 23:30:07', '2025-03-17 16:56:14'),
 (6, 1, 1, 'T-Shirts', '', 0.00, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 'tshirts', 'Men T-shirts', 'Huge variety of men t-shirts', 'men t-shirts, cotton t-shirts', 1, '2022-08-24 17:58:46', '2023-05-05 18:32:28'),
 (7, 1, 1, 'Shirts', '', 0.00, NULL, 'shirts', NULL, NULL, NULL, 1, '2022-08-25 00:09:23', '2022-08-25 00:09:51'),
 (8, 2, 1, 'Tops', '', 0.00, NULL, 'tops', NULL, NULL, NULL, 1, '2022-08-25 00:17:42', '2022-08-25 00:17:42'),
-(9, 0, 4, 'Refrigerators', '', 0.00, NULL, 'refrigerators', 'Refrigerators', NULL, NULL, 1, '2022-09-22 21:55:53', '2022-09-22 21:55:53');
+(10, 4, 2, 'Fashsion ring', '', 0.00, 'Fashion ring', 'fashion-ring', 'Fashion ring', 'fashion ring', 'fashion ring', 1, '2025-03-18 16:16:16', '2025-03-18 16:16:16'),
+(11, 4, 2, 'Wedding rings', '', 0.00, 'Wedding rings', 'wedding-rings', 'Wedding ring', 'Wedding ring', 'Wedding ring', 1, '2025-03-18 16:17:21', '2025-03-18 16:17:21'),
+(12, 0, 4, 'Local Drums', '', 0.00, NULL, 'local-drums', 'Local drums', 'Local drums', 'Local drums', 1, '2025-03-24 16:46:12', '2025-03-24 16:46:12'),
+(13, 0, 5, 'Sandals', '', 0.00, NULL, 'sandals', 'Sandals', 'Sandals', 'Sandals', 1, '2025-03-24 16:58:20', '2025-03-25 11:01:28'),
+(14, 0, 5, 'Slippers', '', 0.00, NULL, 'slippers', 'slippers', 'slippers', 'slippers', 1, '2025-03-24 16:59:16', '2025-03-24 16:59:16');
 
 -- --------------------------------------------------------
 
@@ -793,18 +800,6 @@ CREATE TABLE `coupons` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `coupons`
---
-
-INSERT INTO `coupons` (`id`, `vendor_id`, `coupon_option`, `coupon_code`, `categories`, `brands`, `users`, `coupon_type`, `amount_type`, `amount`, `expiry_date`, `status`, `created_at`, `updated_at`) VALUES
-(1, 0, 'Manual', 'test10', '1,6,7,2,8,3', '2,3', '', 'Single Time', 'Percentage', 10.00, '2023-12-01', 1, NULL, '2023-01-05 18:08:22'),
-(3, 0, 'Automatic', '3dTtKNg7', '1,6,7', '1,2', 'ramy@yopmail.com,ibrahim@gmail.com', 'Multiple Times', 'Percentage', 10.00, '2023-12-31', 1, '2022-12-15 14:56:01', '2023-01-05 17:37:12'),
-(4, 0, 'Manual', 'test200', '1,6,7', '1,2,4', 'ramy@yopmail.com,ibrahim@gmail.com,fouad@gmail.com,mahmoud@yahoo.com', 'Single Time', 'Fixed', 200.00, '2022-12-31', 1, '2022-12-15 14:59:24', '2022-12-18 12:49:19'),
-(5, 1, 'Automatic', 'PHmKm7WL', '1,6,7,2,8,3', '1,2,3,4,5,6,7', '', 'Multiple Times', 'Percentage', 10.00, '2023-08-13', 1, '2023-01-02 23:27:03', '2023-01-02 23:27:03'),
-(6, 0, 'Automatic', 'ekVpnDJL', '1,6,7', '1,2,3,9', '', 'Single Time', 'Percentage', 10.00, '2023-07-11', 1, '2023-03-24 01:03:42', '2023-03-24 01:03:42'),
-(7, 0, 'Automatic', 'Y3gsKF5G', '1,6,7,2,8,3,4,5,9', '1,2,3,4,5,6,7,9', '', 'Multiple Times', 'Percentage', 10.00, '2023-12-31', 1, '2023-04-25 12:49:06', '2023-04-25 12:49:06');
-
 -- --------------------------------------------------------
 
 --
@@ -943,7 +938,8 @@ CREATE TABLE `newsletter_subscribers` (
 INSERT INTO `newsletter_subscribers` (`id`, `email`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'yasser100@yopmail.com', 1, '2023-05-31 18:40:41', '2023-05-31 21:29:24'),
 (3, 'test@test.com', 1, '2023-06-02 15:38:17', '2023-06-02 15:38:17'),
-(4, 'check@check.com', 1, '2023-06-02 15:41:41', '2023-06-06 17:39:13');
+(4, 'check@check.com', 1, '2023-06-02 15:41:41', '2023-06-06 17:39:13'),
+(5, 'ogua.ahmed18@gmail.com', 1, '2025-03-19 08:19:47', '2025-03-19 08:19:47');
 
 -- --------------------------------------------------------
 
@@ -1202,31 +1198,6 @@ CREATE TABLE `orders_products` (
 --
 
 INSERT INTO `orders_products` (`id`, `order_id`, `user_id`, `vendor_id`, `admin_id`, `product_id`, `product_code`, `product_name`, `product_color`, `product_size`, `product_price`, `product_qty`, `item_status`, `courier_name`, `tracking_number`, `commission`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 1, 2, 8, 'BT501', 'Blue T-Shirt', 'Blue', 'Small', 1000.00, 1, '', '', '', 0, '2023-03-01 20:27:38', '2023-03-05 14:22:04'),
-(2, 1, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Medium', 1200.00, 1, '', '', '', 0, '2023-03-01 20:27:38', '2023-03-05 14:22:09'),
-(3, 2, 2, 1, 2, 8, 'BT501', 'Blue T-Shirt', 'Blue', 'Small', 1000.00, 1, '', '', '', 0, '2023-03-01 21:20:52', '2023-03-01 21:20:52'),
-(4, 2, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Medium', 1200.00, 1, '', '', '', 0, '2023-03-01 21:20:52', '2023-03-01 21:20:52'),
-(5, 3, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Small', 1100.00, 1, '', '', '', 0, '2023-03-01 21:37:23', '2023-03-01 21:37:23'),
-(6, 4, 2, 9, 7, 9, 'BT01', 'Black T-shirt', 'black', 'Small', 1080.00, 1, '', '', '', 0, '2023-03-03 21:34:13', '2023-03-05 20:53:43'),
-(7, 6, 2, 9, 7, 10, 'PT01', '100', 'Pink', 'Small', 807.50, 1, '', '', '', 0, '2023-03-05 20:59:36', '2023-03-05 20:59:36'),
-(8, 7, 2, 9, 7, 9, 'BT01', 'Black T-shirt', 'black', 'Small', 1080.00, 1, 'Shipped', 'FedEx', '39539936', 0, '2023-03-05 21:04:45', '2023-03-17 21:37:38'),
-(9, 7, 2, 9, 7, 10, 'PT01', '100', 'Pink', 'Small', 807.50, 1, '', '', '', 0, '2023-03-05 21:04:45', '2023-03-05 21:50:39'),
-(10, 9, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Medium', 1200.00, 1, NULL, '', '', 0, '2023-03-07 18:48:59', '2023-03-07 18:48:59'),
-(11, 10, 2, 0, 1, 1, 'RN11', 'Redmi Note 11', 'Blue', '64GB-4GB', 12000.00, 1, NULL, '', '', 0, '2023-03-07 19:43:24', '2023-03-07 19:43:24'),
-(12, 10, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Medium', 1200.00, 1, NULL, '', '', 0, '2023-03-07 19:43:24', '2023-03-07 19:43:24'),
-(13, 11, 2, 0, 1, 1, 'RN11', 'Redmi Note 11', 'Blue', '64GB-4GB', 12000.00, 1, 'Shipped', 'FedEx', '39539936', 0, '2023-03-07 19:46:03', '2023-03-17 22:46:22'),
-(14, 11, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Medium', 1200.00, 1, 'Shipped', 'Blue Dart', '345411515', 0, '2023-03-07 19:46:03', '2023-03-16 02:16:50'),
-(15, 14, 2, 0, 1, 4, 'BT01', 'Blue T-Shirt', 'Blue', 'Small', 1000.00, 1, NULL, NULL, NULL, 0, '2023-03-17 16:49:44', '2023-03-17 16:49:44'),
-(16, 14, 2, 9, 7, 10, 'PT01', '100', 'Pink', 'Small', 807.50, 1, NULL, NULL, NULL, 0, '2023-03-17 16:49:44', '2023-03-17 16:49:44'),
-(17, 15, 2, 0, 1, 1, 'RN11', 'Redmi Note 11', 'Blue', '64GB-4GB', 12000.00, 1, NULL, NULL, NULL, 0, '2023-03-17 17:31:40', '2023-03-17 17:31:40'),
-(18, 15, 2, 9, 7, 9, 'BT01', 'Black T-shirt', 'black', 'Small', 1080.00, 1, 'Shipped', 'FedEx', '546664564646', 0, '2023-03-17 17:31:40', '2023-03-17 21:34:40'),
-(19, 16, 2, 0, 1, 5, 'GT01', 'Green T-Shirt', 'Green', 'Small', 720.00, 1, NULL, NULL, NULL, 0, '2023-03-18 14:00:49', '2023-03-18 14:00:49'),
-(20, 17, 2, 0, 1, 4, 'BT01', 'Blue T-Shirt', 'Blue', 'Small', 1000.00, 1, NULL, NULL, NULL, 0, '2023-03-21 21:51:03', '2023-03-21 21:51:03'),
-(21, 18, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Medium', 1200.00, 1, NULL, NULL, NULL, 0, '2023-03-24 01:00:07', '2023-03-24 01:00:07'),
-(22, 19, 2, 0, 1, 5, 'GT01', 'Green T-Shirt', 'Green', 'Small', 720.00, 1, NULL, NULL, NULL, 0, '2023-03-24 01:18:08', '2023-03-24 01:18:08'),
-(23, 20, 2, 0, 1, 2, 'RC001', 'Red Casual T-Shirt', 'Red', 'Medium', 1200.00, 1, NULL, NULL, NULL, 0, '2023-03-25 01:58:45', '2023-03-25 01:58:45'),
-(24, 21, 2, 9, 7, 9, 'BT01', 'Black T-shirt', 'black', 'Small', 1080.00, 1, NULL, NULL, NULL, 0, '2023-03-26 02:27:48', '2023-03-26 02:27:48'),
-(25, 22, 2, 0, 1, 1, 'RN11', 'Redmi Note 11', 'Blue', '128GB-4GB', 14400.00, 1, NULL, NULL, NULL, 0, '2023-03-26 02:28:31', '2023-03-26 02:28:31'),
 (26, 23, 2, 0, 1, 1, 'RN11', 'Redmi Note 11', 'Blue', '64GB-4GB', 12000.00, 1, NULL, NULL, NULL, 0, '2023-03-26 02:31:11', '2023-03-26 02:31:11'),
 (27, 24, 2, 0, 1, 1, 'RN11', 'Redmi Note 11', 'Blue', '64GB-4GB', 12000.00, 1, NULL, NULL, NULL, 0, '2023-03-26 02:31:48', '2023-03-26 02:31:48'),
 (28, 25, 2, 0, 1, 1, 'RN11', 'Redmi Note 11', 'Blue', '128GB-4GB', 14400.00, 1, NULL, NULL, NULL, 0, '2023-03-26 02:34:22', '2023-03-26 02:34:22'),
@@ -1721,7 +1692,7 @@ CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `section_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `brand_id` int(11) NOT NULL,
+  `brand_id` int(11) DEFAULT NULL,
   `vendor_id` int(11) NOT NULL,
   `admin_id` int(11) NOT NULL,
   `admin_type` varchar(255) NOT NULL,
@@ -1735,6 +1706,7 @@ CREATE TABLE `products` (
   `product_video` varchar(255) DEFAULT NULL,
   `group_code` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
+  `size` varchar(255) DEFAULT NULL,
   `operating_system` varchar(255) DEFAULT NULL,
   `screen_size` varchar(255) DEFAULT NULL,
   `occasion` varchar(255) DEFAULT NULL,
@@ -1757,17 +1729,21 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `section_id`, `category_id`, `brand_id`, `vendor_id`, `admin_id`, `admin_type`, `product_name`, `product_code`, `product_color`, `product_price`, `product_discount`, `product_weight`, `product_image`, `product_video`, `group_code`, `description`, `operating_system`, `screen_size`, `occasion`, `fit`, `pattern`, `sleeve`, `ram`, `fabric`, `meta_title`, `meta_keywords`, `meta_description`, `is_featured`, `is_bestseller`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 5, 7, 0, 1, 'superadmin', 'Redmi Note 11', 'RN11', 'Blue', 15000, 20, 500, '91540.jpg', '', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', 'Android', 'Up to 3.9 in', NULL, NULL, NULL, NULL, '4 GB', NULL, 'Redmi Note 11', 'redmi note 11', 'Best price for Redmi Note 11', 'Yes', 'Yes', 1, NULL, '2023-08-13 20:44:59'),
-(2, 1, 6, 2, 0, 1, 'superadmin', 'Red Casual T-Shirt', 'RC001', 'Red', 1100, 0, 200, '95575.jpg', '', '100', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', NULL, NULL, NULL, NULL, NULL, 'half sleeve', NULL, 'cotton', NULL, NULL, NULL, 'Yes', 'Yes', 1, NULL, '2023-08-13 20:44:39'),
-(3, 1, 6, 1, 0, 1, 'superadmin', 'Arrow T-Shirt', 'AT01', 'Red', 1500, 0, 400, '27416.jpg', '880084420.mp4', NULL, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', NULL, NULL, NULL, NULL, NULL, 'half sleeve', NULL, 'cotton', 'Pure Cotton T-shirt', 'cotton T-shirt, red T-shirt', 'This is a high quality cotton T-shirt', 'No', 'Yes', 1, '2022-09-02 22:50:41', '2023-05-12 10:25:32'),
-(4, 1, 6, 3, 0, 1, 'superadmin', 'Blue T-Shirt', 'BT01', 'Blue', 2500, 0, 0, '58892.png', NULL, '100', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', NULL, NULL, NULL, NULL, NULL, 'half sleeve', NULL, 'polyester', NULL, NULL, NULL, 'No', 'Yes', 1, '2022-09-26 18:44:39', '2023-05-12 10:21:52'),
-(5, 1, 6, 2, 0, 1, 'superadmin', 'Green T-Shirt', 'GT01', 'Green', 900, 10, 100, '79204.png', NULL, '100', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', NULL, NULL, NULL, NULL, NULL, 'half sleeve', NULL, 'polyester', NULL, NULL, NULL, 'Yes', 'No', 1, '2022-09-26 18:46:39', '2023-05-12 10:22:05'),
-(6, 1, 7, 1, 0, 1, 'superadmin', 'Black Shirt', 'BS01', 'Blue', 2000, 10, 100, '20083.jpg', NULL, '', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.', NULL, NULL, NULL, NULL, NULL, 'full sleeve', NULL, 'polyester', NULL, NULL, NULL, 'Yes', 'Yes', 1, '2022-09-28 12:16:45', '2022-10-31 21:56:02'),
-(7, 2, 4, 7, 0, 1, 'superadmin', 'Redmi Phone', 'RT001', 'Red', 12000, 0, 0, NULL, NULL, '', NULL, 'Android', '5 to 5.4 in', NULL, NULL, NULL, NULL, '4 GB', NULL, NULL, NULL, NULL, 'No', 'No', 1, '2022-10-06 14:37:36', '2022-10-06 14:37:36'),
-(8, 1, 6, 2, 1, 2, 'vendor', 'Blue T-Shirt', 'BT501', 'Blue', 1600, 0, 0, '64835.jpg', NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, 'full sleeve', NULL, 'cotton', NULL, NULL, NULL, 'No', 'No', 1, '2022-10-15 13:10:41', '2022-10-15 13:10:41'),
-(9, 1, 6, 3, 9, 7, 'vendor', 'Black T-shirt', 'BT01', 'black', 1200, 10, 200, '95056.jpg', NULL, '100', NULL, NULL, NULL, NULL, NULL, NULL, 'half sleeve', NULL, 'cotton', NULL, NULL, NULL, 'No', 'No', 1, '2023-03-03 21:12:45', '2023-06-09 12:41:41'),
-(10, 1, 6, 1, 9, 7, 'vendor', 'Pink T-Shirt', 'PT01', 'Pink', 950, 15, 220, '20148.jpg', NULL, '100', NULL, NULL, NULL, NULL, NULL, NULL, 'half sleeve', NULL, 'cotton', NULL, NULL, NULL, 'No', 'No', 1, '2023-03-05 20:56:07', '2023-03-19 01:24:00');
+INSERT INTO `products` (`id`, `section_id`, `category_id`, `brand_id`, `vendor_id`, `admin_id`, `admin_type`, `product_name`, `product_code`, `product_color`, `product_price`, `product_discount`, `product_weight`, `product_image`, `product_video`, `group_code`, `description`, `size`, `operating_system`, `screen_size`, `occasion`, `fit`, `pattern`, `sleeve`, `ram`, `fabric`, `meta_title`, `meta_keywords`, `meta_description`, `is_featured`, `is_bestseller`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 4, NULL, 0, 1, 'superadmin', '1 Piece Gold ring', '001', 'gold', 250, 0, 0, '82185.jpg', NULL, '001', NULL, '7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'one piece gold', 'one piece gold', 'one piece gold', 'Yes', 'No', 1, '2025-03-19 07:59:47', '2025-03-19 07:59:47'),
+(2, 2, 10, 9, 0, 1, 'superadmin', 'Men Fashin RIng', '002', 'silver', 25.2, 0, 0, '33361.jpg', NULL, NULL, 'Men Fashin RIng', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Men Fashin RIng', 'Men Fashin RIng', 'Men Fashin RIng', 'Yes', 'No', 1, '2025-03-19 08:31:17', '2025-03-19 08:31:17'),
+(3, 2, 11, 9, 0, 1, 'superadmin', 'Sparkling Sterling Jewelry Promise/Wedding Ring - Silver', '003', 'silver', 185, 0, 0, '3107.jpg', NULL, '004', 'These top quality wedding rings are very elegant. This ring is made from pure silver 925.Highly resisted to rust, corrosion and tarnishing.  No fading and also anti allergy. Wear comfortably, 100% hand made and very shinny. \r\nAvailable in various sizes (US sizes). It can be used as promise, engagement or wedding ring.\r\nPlease look carefully at the picture to learn how to get your ring size.Get the best rings for all occasions from Naviz Navia Enterprise.\r\nThese top quality wedding rings are very elegant. This ring is made from pure silver 925.Highly resisted to rust, corrosion and tarnishing.  No fading and also anti allergy. Wear comfortably, 100% hand made and very shinny. \r\nAvailable in various sizes (US sizes). It can be used as promise, engagement or wedding ring.\r\nPlease look carefully at the picture to learn how to get your ring size.Get the best rings for all occasions from Naviz Navia Enterprise.\r\nGo through the Naviz Navia Enterprise store for all your ring which suite every occasion such as parties, weddings,engagements. These rings can be prsented as a girft as a promise ring and comes in all sizes.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sparkling Sterling Jewelry Promise/Wedding Ring - Silver', 'Sparkling Sterling Jewelry Promise/Wedding Ring - Silver', 'Sparkling Sterling Jewelry Promise/Wedding Ring - Silver', 'Yes', 'No', 1, '2025-03-24 16:34:15', '2025-03-24 16:35:43'),
+(4, 2, 11, 9, 0, 1, 'superadmin', '360° Rotate Sutra Lucky Charms Finger Ring', '005', 'gold', 170, 0, 0, '68790.jpg', NULL, '005', '1：Om rotate ring Bring to you good luck/Fortune etc\r\n\r\n2:Infinity amulet fetish for Lucky/Safety/Wealth Fortune/Infinity Destiny/Love and Happiness/Protection/Knowledge and Wisdom', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '360° Rotate Sutra Lucky Charms Finger Ring', '360° Rotate Sutra Lucky Charms Finger Ring', '360° Rotate Sutra Lucky Charms Finger Ring', 'Yes', 'No', 1, '2025-03-24 16:38:07', '2025-03-24 16:38:07'),
+(5, 2, 10, 9, 0, 1, 'superadmin', 'Free Masonry Titanium Lucky Finger Charms Ring', '008', 'gold', 408, 0, 0, '76530.jpg', NULL, '008', 'Free Masonry Lucky Finger Charms Ring Bring to you good luck etc2:Lucky/Safety/Love and Happiness/Protection/Knowledge and Wisdom3：Do not let anyone touch it,its only yours4： If only we can change ourselves today and turn to the virtuous side wholeheartedly , the future will surely be good , and the past will be compensated for naturally. and please take your heart like water5：Free Masonry  Lucky Finger Charms Ring Style Fashion6:Most the COD orders is delivery failed,so please pay your order when the parcel(12)arrived7：please do not take order repeated duplication when by COD8:Material:Titanium;Weight:about 13g9:The distance to your address is about 5000-10000km,, so please waiting for about 5-15 days10:Freebie gifts:1 x Jades Ball String Red Lucky Rope in box and 1 x Alloy Necklace in parcel', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Free Masonry Titanium Lucky Finger Charms Ring', 'Free Masonry Titanium Lucky Finger Charms Ring', 'Free Masonry Titanium Lucky Finger Charms Ring', 'Yes', 'No', 1, '2025-03-24 16:40:03', '2025-03-24 16:40:03'),
+(6, 2, 11, 9, 0, 1, 'superadmin', 'Tungsten Carbide Steel Ring', '009', 'silver', 390, 0, 0, '87016.jpg', NULL, NULL, 'Jewellery InformationBrand Name                  NuncadMetal                             Tungsten SteelMetal  stamp                 Tungsten carbideWidth                             2mm,4mm,6mm,8mmRing Size                       4-13 including half sizeWorkmanship                Classic, Weighty and Durable, excellent scratch resistant performanceGreat workmanship on brushed matte surface and high polish smooth innerface, bring you both the Elegance and Comfort.Why choose tungsten carbide jewelry?tungsten carbide jewelry does not tarnish and oxidize,It not like silver will get black,not like copper jewelry allergy prone,not like alloy jewelry because of lead.And it is amazingly hypoallergenic.Such advantages make it a more popular accessory.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tungsten Carbide Steel Ring', 'Tungsten Carbide Steel Ring', 'Tungsten Carbide Steel Ring', 'Yes', 'No', 1, '2025-03-24 16:42:09', '2025-03-24 16:42:47'),
+(7, 4, 12, 9, 0, 1, 'superadmin', 'Dondo Percussion Talking Drum', '009', 'Brown', 555, 0, 0, '38612.jpg', NULL, NULL, 'The Talking Drum or talking drums are a particular type of percussion originating in West Africa. Its particularity lies in the variable tuning, made possible by Nylon strings that progressively stretch the skin.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dondo Percussion Talking Drum', 'Dondo Percussion Talking Drum', 'Yes', 'No', 1, '2025-03-24 16:48:38', '2025-03-24 16:48:38'),
+(8, 4, 12, 9, 0, 1, 'superadmin', 'Cotton Tricolor Djembe Gig Strap African Hand Drum Belt Ashiko', '10', 'multi', 103, 0, 0, '59468.jpg', NULL, NULL, 'Welcome to my store, we have many kinds of price products, we launch new products every day, please follow my store and pay more attention, for more products, Please click on the seller information to enter our store to buy, we hope give you a pleasant shopping experience. Thank you and have a nice day!Durable Djembe Tricolor Strap African Hand Drum Belt Percussion AccessoryDescription:100% and high quality djembe strap\r\nExceptionally comfortable and durable\r\nGreat for djembe, ashiko, and bougarabou drums', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Cotton Tricolor Djembe Gig Strap African Hand Drum Belt Ashiko', 'Cotton Tricolor Djembe Gig Strap African Hand Drum Belt Ashiko', 'Cotton Tricolor Djembe Gig Strap African Hand Drum Belt Ashiko', 'Yes', 'No', 1, '2025-03-24 16:50:33', '2025-03-24 16:50:33'),
+(9, 4, 12, 9, 0, 1, 'superadmin', '12 Pairs Of 7A Maple Wood Drumsticks', '0017', 'Light Brown', 500, 0, 0, '27793.jpg', NULL, NULL, 'The high quality drum sticks are ideal for all types of drum kits and all levels of ability. Designed to be lightweight for playing with a unique barrel tip for quick rebound and added control. Exquisite workmanship, smoothly polished, Made from top grade maple, durable and sturdy. its type is 7A and light brown colour made of quality maple wood. its size is 40 * 1.4 * 1.4cm / 15.7 * 0.6 * 0.6in\r\nBuy now this Maple Wood Drumsticks', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12 Pairs Of 7A Maple Wood Drumsticks', '12 Pairs Of 7A Maple Wood Drumsticks', '12 Pairs Of 7A Maple Wood Drumsticks', 'Yes', 'No', 1, '2025-03-24 16:56:43', '2025-03-24 16:56:43'),
+(10, 5, 13, 9, 0, 1, 'superadmin', 'Classic Unisex Double Buckle Men Sandals', '0012', 'black', 266, 0, 0, '14224.jpg', NULL, NULL, 'Step into timeless style and comfort with our classic unisex double buckle sandals.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Step into timeless style', 'Step into timeless style and comfort with our classic unisex double buckle sandals.', 'Step into timeless style and comfort with our classic unisex double buckle sandals.', 'Yes', 'No', 1, '2025-03-25 11:05:57', '2025-03-25 11:05:57'),
+(11, 5, 13, 9, 0, 1, 'superadmin', 'Men Sandals Men\'s Slippers', '013', 'brown', 266, 0, 0, '56474.jpg', NULL, NULL, 'Men Sandals Men\'s Slippers', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Men Sandals Men\'s Slippers', NULL, 'Men Sandals Men\'s Slippers', 'Yes', 'No', 1, '2025-03-25 11:08:03', '2025-03-25 11:08:03'),
+(12, 5, 14, 9, 0, 1, 'superadmin', 'Leather Flip Flops', '122', 'brown', 350, 0, 0, '44917.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Leather Flip Flops', 'Leather Flip Flops', 'Leather Flip Flops', 'Yes', 'No', 1, '2025-03-25 11:09:39', '2025-03-25 11:09:39'),
+(13, 5, 14, 9, 0, 1, 'superadmin', 'Sol Amass Leather Ankle Strap Sandals', '0900', 'black', 200, 0, 0, '11116.jpg', NULL, NULL, 'Sol Amass Leather Ankle Strap Sandals', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Sol Amass Leather Ankle Strap Sandals', 'Sol Amass Leather Ankle Strap Sandals', 'Sol Amass Leather Ankle Strap Sandals', 'Yes', 'No', 1, '2025-03-25 11:12:23', '2025-03-25 11:12:23'),
+(14, 5, 13, 9, 0, 1, 'superadmin', 'MijaGrace-Men\'s Casual Frosted Leather Velcro', '09765', 'black', 291, 0, 0, '81397.jpg', NULL, NULL, 'MijaGrace-Men\'s Casual Frosted Leather Velcro', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'MijaGrace-Men\'s Casual Frosted Leather Velcro', 'MijaGrace-Men\'s Casual Frosted Leather Velcro', 'MijaGrace-Men\'s Casual Frosted Leather Velcro', 'Yes', 'Yes', 1, '2025-03-25 11:21:43', '2025-03-25 11:21:43');
 
 -- --------------------------------------------------------
 
@@ -1792,24 +1768,9 @@ CREATE TABLE `products_attributes` (
 --
 
 INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `price`, `stock`, `sku`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 'Small', 1100.00, 1, 'RC001-S', 1, '2022-09-11 20:11:15', '2022-10-29 19:54:29'),
-(2, 3, 'Medium', 1200.00, 0, 'RC001-M', 1, '2022-09-11 20:11:16', '2022-10-29 19:54:29'),
-(3, 3, 'Large', 1300.00, 0, 'RC001-L', 1, '2022-09-11 20:11:16', '2022-10-29 19:54:30'),
-(4, 2, 'Small', 1100.00, 4, 'BT001-S', 1, '2022-10-10 13:42:25', '2023-06-09 13:19:38'),
-(5, 2, 'Medium', 1200.00, 11, 'BT001-M', 1, '2022-10-10 13:43:40', '2023-04-07 19:49:51'),
-(6, 2, 'Large', 1300.00, 12, 'BT001-L', 1, '2022-10-10 13:43:40', '2023-04-25 13:24:20'),
-(7, 1, '64GB-4GB', 15000.00, 99, 'RN11644', 1, '2022-10-10 14:00:11', '2023-04-08 02:40:23'),
-(8, 1, '128GB-4GB', 18000.00, 148, 'RN111284', 1, '2022-10-10 15:27:56', '2023-12-18 22:08:58'),
-(9, 7, '64GB-4GB', 12000.00, 100, 'RT001644', 1, '2022-10-10 17:21:27', '2022-10-10 17:21:27'),
-(10, 4, 'Small', 1000.00, 78, 'BT01-S', 1, '2022-10-10 21:36:38', '2025-02-27 16:09:27'),
-(11, 5, 'Small', 800.00, 0, 'GT01-S', 1, '2022-10-10 21:38:12', '2025-02-27 16:09:27'),
-(12, 5, 'Medium', 900.00, 4, 'GT01-M', 1, '2022-10-10 21:39:45', '2023-06-09 13:19:38'),
-(13, 6, 'Small', 2000.00, 2, 'BS01-S', 1, '2022-10-10 21:40:42', '2023-06-09 13:08:27'),
-(14, 6, 'Medium', 3000.00, 10, 'BS01-M', 1, '2022-10-31 21:59:57', '2023-06-09 13:08:27'),
-(15, 8, 'Small', 1000.00, 6, 'BT501-S', 1, '2023-03-01 12:36:27', '2023-07-26 20:15:04'),
-(16, 8, 'Medium', 1200.00, 9, 'BT501-M', 1, '2023-03-01 12:36:27', '2023-04-22 22:05:22'),
-(17, 9, 'Small', 1200.00, 3, 'BS001-S', 1, '2023-03-03 21:16:33', '2023-03-03 21:16:33'),
-(18, 10, 'Small', 950.00, 0, 'PT01', 1, '2023-03-05 20:56:31', '2023-12-19 00:24:52');
+(1, 1, '8', 200.00, 100, 'GLD12', 1, '2025-03-19 08:16:50', '2025-03-19 08:16:50'),
+(2, 1, '7.5', 150.00, 200, 'GLD13', 1, '2025-03-19 08:16:50', '2025-03-19 08:16:50'),
+(3, 2, '8', 25.20, 100, 'KL2', 1, '2025-03-19 08:36:26', '2025-03-19 08:36:26');
 
 -- --------------------------------------------------------
 
@@ -1832,14 +1793,8 @@ CREATE TABLE `products_filters` (
 --
 
 INSERT INTO `products_filters` (`id`, `cat_ids`, `filter_name`, `filter_column`, `status`, `created_at`, `updated_at`) VALUES
-(1, '1,6,7,2,8,3', 'Fabric', 'fabric', 1, '2022-10-03 09:05:25', '2022-10-03 09:05:25'),
-(2, '4,5', 'RAM', 'ram', 1, '2022-10-03 09:43:23', '2022-10-03 09:43:23'),
-(3, '1,6,7,2,8,3', 'Sleeve', 'sleeve', 1, '2022-10-03 09:59:32', '2022-10-03 09:59:32'),
-(4, '1,6,7,2,8,3', 'Pattern', 'pattern', 1, '2022-10-03 10:14:02', '2022-10-03 10:14:02'),
-(5, '1,6,7,2,8,3', 'Fit', 'fit', 1, '2022-10-03 10:14:35', '2022-10-03 10:14:35'),
-(6, '1,6,7,2,8,3', 'Occasion', 'occasion', 1, '2022-10-03 10:31:13', '2022-10-03 10:31:13'),
-(7, '4,5', 'Screen Size', 'screen_size', 1, '2022-10-03 12:11:45', '2022-10-03 12:11:45'),
-(8, '4,5', 'Operating System', 'operating_system', 1, '2022-10-03 12:18:21', '2022-10-03 12:18:21');
+(6, '4', 'size', 'size', 1, '2025-03-18 16:51:49', '2025-03-18 16:51:49'),
+(7, '11', 'size', 'size', 0, '2025-03-24 16:29:52', '2025-03-24 16:32:07');
 
 -- --------------------------------------------------------
 
@@ -1861,22 +1816,11 @@ CREATE TABLE `products_filters_values` (
 --
 
 INSERT INTO `products_filters_values` (`id`, `filter_id`, `filter_value`, `status`, `created_at`, `updated_at`) VALUES
-(1, '1', 'cotton', 1, '2022-10-03 11:52:27', '2022-10-03 11:52:36'),
-(2, '1', 'polyester', 1, '2022-10-03 11:53:40', '2022-10-03 11:53:40'),
-(3, '1', 'wool', 1, '2022-10-03 11:54:27', '2022-10-03 11:54:27'),
-(4, '3', 'full sleeve', 1, '2022-10-03 11:59:03', '2022-10-03 11:59:03'),
-(5, '3', 'half sleeve', 1, '2022-10-03 12:02:08', '2022-10-03 12:02:08'),
-(6, '3', 'short sleeve', 1, '2022-10-03 12:01:14', '2022-10-03 12:01:14'),
-(7, '2', '4 GB', 1, '2022-10-03 12:04:14', '2022-10-03 12:04:14'),
-(8, '2', '8 GB', 1, '2022-10-03 12:08:25', '2022-10-03 12:08:25'),
-(9, '7', 'Up to 3.9 in', 1, '2022-10-03 12:16:34', '2022-10-03 12:16:34'),
-(10, '7', '4 to 4.4 in', 1, '2022-10-03 12:17:19', '2022-10-03 12:17:19'),
-(11, '8', 'Android', 1, '2022-10-03 12:19:07', '2022-10-03 12:19:07'),
-(12, '8', 'iOS', 1, '2022-10-03 12:20:19', '2022-10-03 12:20:19'),
-(13, '8', 'Windows', 1, '2022-10-03 12:21:02', '2022-10-03 12:21:02'),
-(14, '7', '4.5 to 4.9 in', 1, '2022-10-06 12:39:50', '2022-10-06 12:39:50'),
-(15, '7', '5 to 5.4 in', 1, '2022-10-06 13:10:22', '2022-10-06 13:10:22'),
-(16, '7', '5.5 in & above', 1, '2022-10-06 13:11:25', '2022-10-06 13:11:25');
+(1, '4', '7', 1, '2025-03-18 16:50:30', '2025-03-18 16:50:30'),
+(2, '6', '8', 1, '2025-03-18 16:57:16', '2025-03-18 16:57:16'),
+(3, '6', '8.5', 1, '2025-03-18 16:57:34', '2025-03-18 16:57:34'),
+(4, '6', '9', 1, '2025-03-18 16:57:52', '2025-03-18 16:57:52'),
+(5, '6', '7', 1, '2025-03-19 07:52:40', '2025-03-19 07:52:40');
 
 -- --------------------------------------------------------
 
@@ -1898,9 +1842,9 @@ CREATE TABLE `products_images` (
 --
 
 INSERT INTO `products_images` (`id`, `product_id`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, '27416.jpg8713.jpg', 1, '2022-09-19 22:14:34', '2022-09-19 22:30:29'),
-(2, 2, 'dfd.jpg4510.jpg', 1, '2022-09-19 22:14:34', '2022-09-19 22:30:30'),
-(4, 2, 't-shirt-red-man-1710578.jpg97967.jpg', 1, '2022-11-01 02:07:37', '2022-11-01 02:07:37');
+(5, 2, '2.jpg70529.jpg', 1, '2025-03-19 08:38:31', '2025-03-19 08:38:31'),
+(6, 2, '3.jpg14319.jpg', 1, '2025-03-19 08:38:41', '2025-03-19 08:38:41'),
+(7, 2, '4.jpg34200.jpg', 1, '2025-03-19 08:38:51', '2025-03-19 08:38:51');
 
 -- --------------------------------------------------------
 
@@ -1918,16 +1862,6 @@ CREATE TABLE `ratings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `ratings`
---
-
-INSERT INTO `ratings` (`id`, `user_id`, `product_id`, `review`, `rating`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'It\'s a great mobile phone!', 4, 1, NULL, '2023-07-05 18:30:11'),
-(3, 2, 2, 'Nice red t-shirt!', 4, 1, '2023-07-08 19:14:14', '2023-07-11 16:31:24'),
-(4, 2, 4, 'Very nice blue t-shirt!', 5, 1, '2023-07-11 16:33:11', '2023-07-11 16:33:34'),
-(5, 34, 4, 'Not bad blue t-shirt!', 2, 1, '2023-07-11 19:37:22', '2023-07-11 19:38:02');
 
 -- --------------------------------------------------------
 
@@ -2092,7 +2026,11 @@ INSERT INTO `recently_viewed_products` (`id`, `product_id`, `session_id`, `creat
 (142, 1, '353379f27d45f77a258c3ab7594f84d3', NULL, NULL),
 (143, 10, '2822300ed44786a2085699da7120e2c6', NULL, NULL),
 (144, 5, '2822300ed44786a2085699da7120e2c6', NULL, NULL),
-(145, 4, '2822300ed44786a2085699da7120e2c6', NULL, NULL);
+(145, 4, '2822300ed44786a2085699da7120e2c6', NULL, NULL),
+(146, 1, 'a5ed260c265f698aa159b2c5286eb2bc', NULL, NULL),
+(147, 2, 'a5ed260c265f698aa159b2c5286eb2bc', NULL, NULL),
+(148, 1, '95a6fa45a5c038e2121d4a729a967dc4', NULL, NULL),
+(149, 3, '95a6fa45a5c038e2121d4a729a967dc4', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2114,9 +2052,9 @@ CREATE TABLE `sections` (
 
 INSERT INTO `sections` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Clothing', 1, NULL, '2022-09-22 19:28:50'),
-(2, 'Electronics', 1, NULL, '2022-09-22 18:38:47'),
-(4, 'Appliances', 1, NULL, NULL),
-(6, 'Computers', 1, '2022-08-19 22:27:04', '2022-09-22 18:51:54');
+(2, 'Jewelry', 1, NULL, '2025-03-17 16:51:00'),
+(4, 'Drums', 1, NULL, '2025-03-17 16:51:33'),
+(5, 'Shoes', 1, '2025-03-17 16:53:24', '2025-03-17 16:53:24');
 
 -- --------------------------------------------------------
 
@@ -2456,17 +2394,6 @@ CREATE TABLE `vendors` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `vendors`
---
-
-INSERT INTO `vendors` (`id`, `name`, `address`, `city`, `state`, `country`, `pincode`, `mobile`, `email`, `confirm`, `commission`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Yasser Fouaad - Vendor', '17 El-Salam St.', 'Maadi', 'Cairo', 'Egypt', '33315', '01259598421', 'yasser@admin.com', 'No', 5.00, 1, NULL, '2023-04-21 23:21:23'),
-(5, 'Samir Morsy', '9 Fouaad St.', 'Bab Shark', 'Alexandria', 'Egypt', NULL, '01154572136', 'samir@yahoo.com', 'No', 5.00, 1, '2022-10-13 22:55:41', '2023-04-18 14:07:27'),
-(6, 'Ramy Saeed', '25 El-Amana St.', 'Zagazig', 'Sharkia', 'Egypt', '54151', '01098571935', 'ramy@admin.com', 'Yes', 3.00, 0, '2022-10-14 01:20:03', '2023-04-18 14:08:12'),
-(8, 'Safaa Masoud', '14 Talaat Harb St.', 'Abo Tesht', 'Qena', 'Egypt', NULL, '01255374956', 'safaa@vendor.com', 'Yes', 0.00, 0, '2022-10-14 18:46:53', '2022-10-14 23:23:51'),
-(9, 'Ghali Shennway', '8 Fady Safwat St.', 'El Ganayen', 'Suez', 'Egypt', NULL, '01154557789', 'ghali@yahoo.com', 'Yes', 0.00, 1, '2022-10-14 18:48:28', '2022-10-14 18:48:28');
-
 -- --------------------------------------------------------
 
 --
@@ -2483,14 +2410,6 @@ CREATE TABLE `vendors_bank_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `vendors_bank_details`
---
-
-INSERT INTO `vendors_bank_details` (`id`, `vendor_id`, `account_holder_name`, `bank_name`, `account_number`, `bank_ifsc_code`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Yasser Fouaad', 'CIB', '777777', '55555', NULL, NULL),
-(2, 6, 'Ramy Saeed', 'HSBC', '5124152415', '5458745', NULL, '2022-10-15 21:28:44');
 
 -- --------------------------------------------------------
 
@@ -2518,15 +2437,6 @@ CREATE TABLE `vendors_business_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `vendors_business_details`
---
-
-INSERT INTO `vendors_business_details` (`id`, `vendor_id`, `shop_name`, `shop_address`, `shop_city`, `shop_state`, `shop_country`, `shop_pincode`, `shop_mobile`, `shop_website`, `shop_email`, `address_proof`, `address_proof_image`, `business_license_number`, `gst_number`, `pan_number`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Electronics World', '1234-Mall Road', 'New Cairo', 'Cairo', 'Egypt', '00000000000', '1111111111', 'amazon.com.eg', 'yasser@admin.com', 'Aadhar card', '52583.png', '2222222', '3333333337', '444444444', NULL, '2022-10-15 20:11:35'),
-(2, 6, 'B Tech', 'test', 'sgs', 'sgsag', 'Bahrain', '454545', '1111111111', 'sagasga', NULL, 'PAN', '', '3333', '333333333', '11111', NULL, '2022-10-15 21:19:44'),
-(3, 9, 'Ghali Vendor', NULL, 'Cairo', NULL, NULL, NULL, '0113335845', NULL, NULL, 'Passport', '', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -2790,7 +2700,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `banners`
 --
 ALTER TABLE `banners`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -2802,13 +2712,13 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `cod_pincodes`
@@ -2841,6 +2751,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `newsletter_subscribers`
+--
+ALTER TABLE `newsletter_subscribers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
@@ -2871,16 +2787,70 @@ ALTER TABLE `order_statuses`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `products_attributes`
+--
+ALTER TABLE `products_attributes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `products_filters`
+--
+ALTER TABLE `products_filters`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `products_filters_values`
+--
+ALTER TABLE `products_filters_values`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `products_images`
+--
+ALTER TABLE `products_images`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `recently_viewed_products`
 --
 ALTER TABLE `recently_viewed_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+
+--
+-- AUTO_INCREMENT for table `sections`
+--
+ALTER TABLE `sections`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `vendors`
+--
+ALTER TABLE `vendors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `vendors_bank_details`
+--
+ALTER TABLE `vendors_bank_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
